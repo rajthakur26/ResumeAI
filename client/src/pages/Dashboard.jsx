@@ -173,4 +173,4 @@ function ResumePreviewModal({ resume, onClose }) {
       </div>
     </div>
   );
-}
+} 
