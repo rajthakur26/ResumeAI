@@ -12,7 +12,7 @@ export default function Dashboard() {
     const fetchResumes = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/resume/my",
+          "https://resumeai-r4jx.onrender.com/api/resume/my",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -29,7 +29,7 @@ export default function Dashboard() {
   const downloadPDF = async (resumeId, title) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/resume/download/${resumeId}`,
+        `https://resumeai-r4jx.onrender.com/api/resume/download/${resumeId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -13,7 +13,7 @@ export default function ResumeBuilder() {
 
   const generateSummary = async () => {
     const res = await axios.post(
-      "http://localhost:5000/api/ai/summary",
+      "https://resumeai-r4jx.onrender.com/api/ai/summary",
       { skills, experience }
     );
     setSummary(res.data.summary);
@@ -21,7 +21,7 @@ export default function ResumeBuilder() {
 
   const saveResume = async () => {
     const res = await axios.post(
-      "http://localhost:5000/api/resume/create",
+      "https://resumeai-r4jx.onrender.com/api/resume/create",
       {
         title,
         summary,

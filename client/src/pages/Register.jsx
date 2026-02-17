@@ -11,7 +11,7 @@ export default function Register() {
   const handleRegister = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://resumeai-r4jx.onrender.com/api/auth/register",
         { name, email, password }
       );
 
