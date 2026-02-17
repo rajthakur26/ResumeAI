@@ -11,12 +11,13 @@ export default function Register() {
   const handleRegister = async () => {
     try {
       await axios.post(
-        "https://resumeai-r4jx.onrender.com/api/auth/register",
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
         { name, email, password }
       );
 
-      navigate("/");
-    } catch {
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
       alert("Error registering user");
     }
   };
@@ -56,7 +57,7 @@ export default function Register() {
 
         <p className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <Link to="/" className="text-blue-600 font-medium">
+          <Link to="/login" className="text-blue-600 font-medium">
             Login
           </Link>
         </p>

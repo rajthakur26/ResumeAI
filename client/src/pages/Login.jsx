@@ -10,13 +10,14 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://resumeai-r4jx.onrender.com/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         { email, password }
       );
 
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
-    } catch {
+    } catch (error) {
+      console.error(error);
       alert("Invalid Credentials");
     }
   };
@@ -31,6 +32,7 @@ export default function Login() {
         <input
           className="w-full border p-3 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -38,6 +40,7 @@ export default function Login() {
           type="password"
           className="w-full border p-3 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 

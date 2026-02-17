@@ -12,29 +12,39 @@ export default function ResumeBuilder() {
   const [summary, setSummary] = useState("");
 
   const generateSummary = async () => {
-    const res = await axios.post(
-      "https://resumeai-r4jx.onrender.com/api/ai/summary",
-      { skills, experience }
-    );
-    setSummary(res.data.summary);
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/ai/summary`,
+        { skills, experience }
+      );
+      setSummary(res.data.summary);
+    } catch (error) {
+      console.error(error);
+      alert("Error generating summary");
+    }
   };
 
   const saveResume = async () => {
-    const res = await axios.post(
-      "https://resumeai-r4jx.onrender.com/api/resume/create",
-      {
-        title,
-        summary,
-        skills: skills.split(","),
-        experience,
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/resume/create`,
+        {
+          title,
+          summary,
+          skills: skills.split(",").map(s => s.trim()),
+          experience,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-    alert("Resume Saved! ATS Score: " + res.data.atsScore);
-    navigate("/dashboard");
+      alert("Resume Saved! ATS Score: " + res.data.atsScore);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+      alert("Error saving resume");
+    }
   };
 
   return (
@@ -45,12 +55,14 @@ export default function ResumeBuilder() {
         <input
           className="w-full border p-3 rounded mb-4"
           placeholder="Resume Title"
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
         <input
           className="w-full border p-3 rounded mb-4"
           placeholder="Skills (comma separated)"
+          value={skills}
           onChange={(e) => setSkills(e.target.value)}
         />
 
@@ -58,20 +70,21 @@ export default function ResumeBuilder() {
           className="w-full border p-3 rounded mb-4"
           rows="4"
           placeholder="Experience"
+          value={experience}
           onChange={(e) => setExperience(e.target.value)}
         />
 
         <div className="flex gap-4 mb-6">
           <button
             onClick={generateSummary}
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
           >
             Generate AI Summary
           </button>
 
           <button
             onClick={saveResume}
-            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
           >
             Save Resume
           </button>

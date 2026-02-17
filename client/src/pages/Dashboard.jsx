@@ -12,7 +12,7 @@ export default function Dashboard() {
     const fetchResumes = async () => {
       try {
         const res = await axios.get(
-          "https://resumeai-r4jx.onrender.com/api/resume/my",
+          `${import.meta.env.VITE_API_URL}/api/resume/my`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -24,12 +24,12 @@ export default function Dashboard() {
     };
 
     fetchResumes();
-  }, []);
+  }, [token]);
 
   const downloadPDF = async (resumeId, title) => {
     try {
       const response = await fetch(
-        `https://resumeai-r4jx.onrender.com/api/resume/download/${resumeId}`,
+        `${import.meta.env.VITE_API_URL}/api/resume/download/${resumeId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,7 +55,6 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50 py-10">
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* Header */}
         <div className="flex justify-between items-center mb-10">
           <div>
             <h1 className="text-4xl font-bold text-gray-800">
@@ -74,7 +73,6 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {/* Resume Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {resumes.map((resume) => (
             <div
@@ -125,7 +123,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Preview Modal */}
       {selectedResume && (
         <ResumePreviewModal
           resume={selectedResume}
@@ -173,4 +170,4 @@ function ResumePreviewModal({ resume, onClose }) {
       </div>
     </div>
   );
-} 
+}

@@ -6,7 +6,8 @@ export default function Landing() {
       <div className="max-w-6xl mx-auto px-6 py-20 text-center">
 
         <h1 className="text-5xl font-bold text-gray-800 mb-6">
-          Build Smarter Resumes with <span className="text-blue-600">ResumeAI</span>
+          Build Smarter Resumes with{" "}
+          <span className="text-blue-600">ResumeAI</span>
         </h1>
 
         <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
@@ -17,14 +18,15 @@ export default function Landing() {
         <div className="space-x-4">
           <Link
             to="/register"
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg shadow hover:bg-blue-700"
+            className="bg-blue-600 text-white px-8 py-3 rounded-lg shadow hover:bg-blue-700 transition"
           >
             Get Started
           </Link>
 
+          {/* FIXED LOGIN ROUTE */}
           <Link
-            to="/"
-            className="bg-white text-blue-600 border px-8 py-3 rounded-lg shadow hover:bg-gray-50"
+            to="/login"
+            className="bg-white text-blue-600 border px-8 py-3 rounded-lg shadow hover:bg-gray-50 transition"
           >
             Login
           </Link>
@@ -34,9 +36,18 @@ export default function Landing() {
       {/* Features Section */}
       <div className="bg-white py-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
-          <Feature title="AI Summary" desc="Generate professional summaries instantly." />
-          <Feature title="ATS Scoring" desc="Optimize your resume for hiring systems." />
-          <Feature title="Version Control" desc="Track and improve resume versions." />
+          <Feature
+            title="AI Summary"
+            desc="Generate professional summaries instantly."
+          />
+          <Feature
+            title="ATS Scoring"
+            desc="Optimize your resume for hiring systems."
+          />
+          <Feature
+            title="Version Control"
+            desc="Track and improve resume versions."
+          />
         </div>
       </div>
     </div>

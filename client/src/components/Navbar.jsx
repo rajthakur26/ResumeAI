@@ -11,7 +11,10 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white shadow-md px-8 py-4 flex justify-between items-center">
-      <h1 className="text-2xl font-bold text-blue-600">
+      <h1
+        onClick={() => navigate("/")}
+        className="text-2xl font-bold text-blue-600 cursor-pointer"
+      >
         Resume<span className="text-black">AI</span>
       </h1>
 
@@ -24,30 +27,34 @@ export default function Navbar() {
             >
               Dashboard
             </Link>
+
             <Link
               to="/builder"
               className="text-gray-700 hover:text-blue-600"
             >
               Builder
             </Link>
+
             <button
               onClick={logout}
-              className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+              className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
             >
               Logout
             </button>
           </>
         ) : (
           <>
+            {/* FIXED LOGIN ROUTE */}
             <Link
-              to="/"
+              to="/login"
               className="text-gray-700 hover:text-blue-600"
             >
               Login
             </Link>
+
             <Link
               to="/register"
-              className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+              className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition"
             >
               Register
             </Link>
